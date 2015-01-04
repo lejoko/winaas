@@ -1,9 +1,24 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Winery -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Winery %></h1>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @winery.name %>
-</p>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:name) %></dt>
+      <dd><pre class="prettyprint"><%= @winery.name %></pre></dd>
+  </dl>
+</div>
 
-<%= link_to 'Edit', edit_winery_path(@winery) %> |
-<%= link_to 'Back', wineries_path %>
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              wineries_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_winery_path(@winery), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              winery_path(@winery),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
+

@@ -1,5 +1,6 @@
-<h1>New winery</h1>
+<%- model_class = Winery -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => Winery %></h1>
+</div>
+<%= render :partial => 'form' %>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', wineries_path %>

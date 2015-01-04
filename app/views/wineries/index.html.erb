@@ -1,25 +1,36 @@
-<h1>Listing wineries</h1>
-
-<table>
+<%- model_class = Winery -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Winery %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @wineries.each do |winery| %>
       <tr>
+        <td><%= winery.id %></td>
         <td><%= winery.name %></td>
-        <td><%= link_to 'Show', winery %></td>
-        <td><%= link_to 'Edit', edit_winery_path(winery) %></td>
-        <td><%= link_to 'Destroy', winery, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l winery.created_at, format: :long %></td>
+        <td>
+          <%= link_to winery_path(winery), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to winery_path(winery), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Winery', new_winery_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_winery_path,
+            :class => 'btn btn-primary' %>
