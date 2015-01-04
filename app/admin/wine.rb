@@ -1,4 +1,5 @@
 ActiveAdmin.register Wine do
+  permit_params :name, :vintage
 
 
   # See permitted parameters documentation:
