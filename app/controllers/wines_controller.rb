@@ -1,5 +1,5 @@
 class WinesController < ApplicationController
-  before_action :set_wine, only: [:show, :edit, :update, :destroy]
+  before_action :set_wine, only: [:show, :edit, :update, :destroy, :vote]
 
   # GET /wines
   # GET /wines.json
